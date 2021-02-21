@@ -1,0 +1,13 @@
+D:\TankOnline\TankOnline\bin\Debug\TankOnline.exe.config
+D:\TankOnline\TankOnline\bin\Debug\TankOnline.exe
+D:\TankOnline\TankOnline\bin\Debug\TankOnline.pdb
+D:\TankOnline\TankOnline\bin\Debug\Serialization.dll
+D:\TankOnline\TankOnline\bin\Debug\Serialization.pdb
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.csprojAssemblyReference.cache
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.Form1.resources
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.Properties.Resources.resources
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.csproj.GenerateResource.cache
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.csproj.CoreCompileInputs.cache
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.csproj.CopyComplete
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.exe
+D:\TankOnline\TankOnline\obj\Debug\TankOnline.pdb
