@@ -26,9 +26,6 @@ namespace TankOnline
 		public Form1()
 		{
 			InitializeComponent();
-
-
-
 		}
 
 		private async void buttonWait_Click(object sender, EventArgs e)
@@ -39,7 +36,9 @@ namespace TankOnline
 			this.Size = new Size(800, 800);
 			try
 			{
-				if(textBox1.Text == "")
+				
+
+				if (textBox1.Text == "")
 				{
 					tcpListener = new TcpListener(iPAddress, 8000);
 					tcpListener.Start();
@@ -50,7 +49,7 @@ namespace TankOnline
 						networkStream = tcpClient.GetStream();
 					}));
 
-					machines1 = new Machines();
+					
 					
 					Thread thread = new Thread(new ThreadStart(GetAction));
 					thread.Start();
@@ -66,11 +65,12 @@ namespace TankOnline
 						networkStream = tcpClient.GetStream();
 					}));
 
-					machines1 = new Machines();
+					
 
 					Thread thread = new Thread(new ThreadStart(GetAction));
 					thread.Start();
 				}
+				machines1 = new Machines();
 				machines2 = new Machines();
 
 				machines1.picture.Image = Image.FromFile("green.png");
@@ -78,13 +78,13 @@ namespace TankOnline
 				machines1.Player.X = 300;
 				machines1.Player.Y = 700;
 				machines1.picture.Location = new Point(machines1.Player.X, machines1.Player.Y);
-				
+
 
 				machines2.picture.Image = Image.FromFile("red.png");
 				this.Controls.Add(machines2.picture);
 				machines2.Player.X = 400;
 				machines2.Player.Y = 700;
-				machines2.picture.Location = new Point(machines2.Player.X,machines2.Player.Y);
+				machines2.picture.Location = new Point(machines2.Player.X, machines2.Player.Y);
 
 			}
 			catch (Exception ex)
@@ -153,19 +153,28 @@ namespace TankOnline
 		private void Form1_KeyDown(object sender, KeyEventArgs e)
 		{
 			Keys keys = e.KeyData;
-			machines1.Orientation(keys);
+			machines1.Player.keys = e.KeyData;
 			SendAction();
+			machines1.Orientation(keys);
+			machines1.picture.Location = new Point(machines1.Player.X, machines1.Player.Y);
 		}
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			networkStream?.Close();
-			tcpClient?.Close();
-			tcpListener?.Stop();
+			//networkStream?.Close();
+			//tcpClient?.Close();
+			//tcpListener?.Stop();
 		}
-		protected internal void GetAction()
+		private void Shot()
 		{
 
+		}
+			/// <summary>
+			/// Перенес из класса Машина
+			/// забыл зачем
+			/// </summary>
+		protected internal void GetAction()
+		{
 			try
 			{
 				while (true)
@@ -176,14 +185,15 @@ namespace TankOnline
 						networkStream.Read(data, 0, data.Length);
 						machines2.Player = (ObjectAction)Serialization.Serialization.ByteArrayToObject(data);
 					} while (networkStream.DataAvailable);
+
+					machines2.Orientation(machines2.Player.keys);
+
 					this.Invoke(new Action(() =>
 					{
-						if (machines2.Player.Down == true) machines2.Orientation(Keys.Down);
-						if (machines2.Player.Up == true) machines2.Orientation(Keys.Up);
-						if (machines2.Player.Left == true) machines2.Orientation(Keys.Left);
-						if (machines2.Player.Righ == true) machines2.Orientation(Keys.Right);
-						machines2.picture.Location = new Point(machines2.Player.X, machines2.Player.Y);
+						this.machines2.picture.Location = new Point(this.machines2.Player.X, this.machines2.Player.Y);
+						this.Invalidate();
 					}));
+					
 				}
 
 			}

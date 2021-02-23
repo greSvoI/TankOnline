@@ -56,11 +56,55 @@ namespace TankOnline
 		protected internal void Orientation(Keys keys)
 		{
 			Bitmap bitmap = new Bitmap(picture.Image);
-			if (keys == Keys.Down)
+			if(keys == Keys.Left)
+			{
+				this.Player.Left = true;
+				Player.X -= 5;
+				if(Player.Up)
+				{
+					Player.Up = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
+					picture.Image = bitmap;
+				}
+				if(Player.Down)
+				{
+					Player.Down = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+					picture.Image = bitmap;
+				}
+				if(Player.Righ)
+				{
+					Player.Righ = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
+					picture.Image = bitmap;
+				}
+			}
+			else if (keys == Keys.Right)
+			{
+				Player.Righ = true;
+				Player.X += 5;
+				if (Player.Up)
+				{
+					Player.Up = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+					picture.Image = bitmap;
+				}
+				if (Player.Down)
+				{
+					Player.Down = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
+					picture.Image = bitmap;
+				}
+				if (Player.Left)
+				{
+					Player.Left = false;
+					bitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
+				}
+			}
+			else if (keys == Keys.Down)
 			{
 				Player.Down = true;
 				Player.Y += 5;
-				picture.Location = new Point(Player.X, Player.Y);
 				if (Player.Left == true)
 				{
 					Player.Left = false;
@@ -84,7 +128,6 @@ namespace TankOnline
 			else if(keys == Keys.Up)
 			{
 				Player.Y -= 5;
-				picture.Location = new Point(Player.X, Player.Y);
 				Player.Up = true;
 				if (Player.Left == true) 
 				{

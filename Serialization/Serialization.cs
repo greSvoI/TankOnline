@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Serialization
 {
@@ -58,5 +59,6 @@ namespace Serialization
 		public bool Left { get; set; } = false;
 		public bool Righ { get; set; } = false;
 		public bool Shot { get; set; } = false;
+		public Keys keys { get; set; }
 	}
 }
