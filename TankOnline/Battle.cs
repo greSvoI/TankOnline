@@ -230,7 +230,6 @@ namespace TankOnline
 			/// </summary>
 		protected internal void GetAction()
 		{
-
 			try
 			{
 				while (true)
